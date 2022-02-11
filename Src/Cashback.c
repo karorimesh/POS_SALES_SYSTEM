@@ -28,6 +28,7 @@ void cashback(){
 	int cashback = 0;
 	int total = 0;
 	char totalAmount[20];
+	char cardData[128];
 
 //	memory clearing operations
 
@@ -36,6 +37,7 @@ void cashback(){
 	memset(pinValue, 0, sizeof pinValue);
 	memset(printData, 0, sizeof printData);
 	memset(confirmMessage, 0, sizeof confirmMessage);
+	memset(cardData, 0, sizeof cardData);
 	//Enter sale Amount
 	amountResult = GL_Dialog_Amount(gGoalGraphicLibInstance, "Sale", "Enter Amount", saleAmountMask, saleAmount, sizeof(saleAmount),currency, GL_ALIGN_BOTTOM_RIGHT, 60 * 1000);
 	if (amountResult == GL_KEY_CANCEL) {
@@ -53,7 +55,7 @@ void cashback(){
 	sprintf(totalAmount, "%d.00", total);
 
 	// Prompt to enter Swipe card
-	cardOps();
+	cardOps(cardData);
 
 	//Pin Entry
 	labelPin:
@@ -81,7 +83,7 @@ void cashback(){
 	//TODO Print receipt
 	strcat(printData, "Sale With Cashback Payment\n=============================\n");
 	strcat(printData, "Card No:         ");
-	strcat(printData, "");
+	strcat(printData, cardData);
 	strcat(printData, "\nSale Amount:       Ksh.");
 	strcat(printData, saleAmount);
 	strcat(printData, "\nCashback Amount:       Ksh.");

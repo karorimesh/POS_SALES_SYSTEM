@@ -22,6 +22,7 @@ void sale(){
 	char pinEntry = 0;
 	int amount = 0;
 	char printData[1000];
+	char cardData[128];
 
 
 
@@ -30,6 +31,7 @@ void sale(){
 	memset(confirmSale, 0, sizeof confirmSale);
 	memset(pinValue, 0, sizeof pinValue);
 	memset(printData, 0, sizeof printData);
+	memset(cardData, 0, sizeof cardData);
 
 
 	//Dialog for input Amount
@@ -56,7 +58,7 @@ void sale(){
 
 //	Card Reader or Swipe
 
-	cardOps();
+	cardOps(cardData);
 
 
 	//PIN Input
@@ -75,6 +77,7 @@ void sale(){
 	sprintf(saleAmount, "%d", amount);
 	strcat(confirmSale, saleAmount);
 	strcat(confirmSale, "\nBy account: ");
+	strcat(confirmSale, cardData);
 	message = GL_Dialog_Message(gGoalGraphicLibInstance, "Confirm Transaction", confirmSale , GL_ICON_QUESTION, GL_BUTTON_VALID_CANCEL, GL_TIME_INFINITE);
 	if(message == GL_KEY_CANCEL){
 		goto labelEnd;
@@ -83,7 +86,7 @@ void sale(){
 	//TODO Print receipt
 	strcat(printData, "Sale Payment\n=============================\n");
 	strcat(printData, "Card No:         ");
-	strcat(printData, "");
+	strcat(printData, cardData);
 	strcat(printData, "\nSale Amount:       Ksh.");
 	strcat(printData, saleAmount);
 	makeReceipt(printData);
@@ -129,7 +132,7 @@ void makeReceipt(char *printData){
 }
 
 
-void cardOps(){
+void cardOps(char *cardData){
 	//Magstripe definitions
 
 	int magCardPresent = FALSE;
@@ -140,15 +143,27 @@ void cardOps(){
 	byte decodeCount = 0;
 	int statusIso = ISO_OK - 1;
 	ulong message = 0;
+	char trackNo[129];
+	char *source = 0;
+	char *dest = 0;
+
 
 	//Card inserted variables
+	int i;
 	Telium_File_t* portCam;
 	unsigned char ucStatus;
 	portCam = NULL;
+	T_APDU apduCmd;
+	T_APDU apduRpns;
+	HISTORIC histData;
+	byte cmdSqn[256];
+	byte rspnSqn[256];
 
 	//Prompt for Card insert or swipe
 
 	memset(dataRead, 0, sizeof dataRead);
+	memset(trackNo, 0, sizeof trackNo);
+
 	while(!magCardPresent){
 		message = GL_Dialog_Message(gGoalGraphicLibInstance, NULL, "Please Swipe or Insert card", GL_ICON_INFORMATION, GL_BUTTON_ALL, 2*1000);
 
@@ -169,6 +184,16 @@ void cardOps(){
 		swipeStatus = Telium_Ttestall( CAM0 | SWIPE31 | SWIPE2 | SWIPE3 | KEYBOARD, 0);
 
 		if(swipeStatus & CAM0){
+			Telium_EMV_power_on(portCam, &histData);
+			memcpy (cmdSqn,
+					    "\x00\xA4\x04\x00\x0E"
+						"1PAY.SYS.DDF01",
+						apduCmd.length);
+			apduCmd.data = cmdSqn;
+			apduRpns.data = rspnSqn;
+			statusIso = Telium_EMV_apdu(portCam, &apduCmd, &apduRpns);
+			for ( i = 0; i<apduCmd.length; i++)
+					Telium_Sprintf(&cardData[3*i], "%02X ", rspnSqn[i]);
 			statusIso = 0;
 		}
 
@@ -187,7 +212,26 @@ void cardOps(){
 		if(swipeStatus & SWIPE2)
 		{
 			memset(dataRead, 0, sizeof dataRead);
-			statusIso = Telium_Is_iso2(hMag2, &decodeCount, (byte*)dataRead);
+			statusIso = Telium_Is_iso2(hMag2, &decodeCount, (unsigned char*)dataRead);
+			if(statusIso < DEF_SEP) {
+				source = dataRead;
+				dest = trackNo;
+				while(*dataRead) {
+					if(*source++ == 'B')
+						break;
+				}
+				while(*source) {
+					if(*source == 'F')
+						break;
+					if(*source == 'D')
+						break;
+					if(*source == '?')
+						break;
+					*dest++ = *source++;
+				}
+			}
+			strncat(cardData, trackNo, 128);
+
 		}
 
 		if(swipeStatus & SWIPE3)
@@ -212,6 +256,26 @@ void cardOps(){
 }
 
 //Retrieve card information
-void retrieveData(){
+int retrieveData(char *trackNo, char *source, char *dest ){
+	int trcksNo = 0;
+	byte len = 0;
+	char temp[128];
+	Telium_File_t *hMag31=NULL, *hMag2=NULL, *hMag3=NULL;
 
+	memset(temp, 0, sizeof temp);
+	trcksNo = Telium_Is_iso2(hMag2, &len, (byte*)temp);
+//	if(trcksNo < DEF_SEP) {
+//		source = temp;
+//		dest = trackNo;
+//		while(*source) {       //find start sentinel
+//			if(*source++ == '%')
+//				break;
+//		}
+//		while(*source) {       //copy all data between start and end sentinels
+//			if(*source == '?')
+//				break;
+//			*dest++ = *source++;
+//		}
+//	}
+	return trcksNo;
 }

@@ -29,6 +29,9 @@ void bill(){
 	// Memory reset
 	memset(billNumber, 0, sizeof billNumber);
 	memset(billAmount, 0, sizeof billAmount);
+	memset(printData, 0, sizeof printData);
+	memset(confirmMessage, 0, sizeof confirmMessage);
+	memset(billMask, 0, sizeof billMask);
 	// Functions for Bill number input
 	//	Cast Mask
 	for (i ; i <= billMaskSize ; ++i) {
