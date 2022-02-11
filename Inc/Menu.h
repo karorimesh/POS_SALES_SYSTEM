@@ -22,6 +22,9 @@ extern T_GL_HGRAPHIC_LIB gGoalGraphicLibInstance;
 extern void menuGoalDisplay(void);
 extern void initUIContext(int);
 extern void releaseUIContext(void);
+void sale(void);
+void cashback(void);
+void bill(void);
 
 
 #endif //__MENU_H

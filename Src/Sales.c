@@ -163,6 +163,10 @@ void cardOps(char *cardData){
 
 	memset(dataRead, 0, sizeof dataRead);
 	memset(trackNo, 0, sizeof trackNo);
+	memset(cmdSqn,0 ,sizeof cmdSqn);
+	memset(rspnSqn, 0, sizeof rspnSqn);
+	memcpy (cmdSqn,"80C002A108", 20);// Read Data from chip
+	apduCmd.length = 20;
 
 	while(!magCardPresent){
 		message = GL_Dialog_Message(gGoalGraphicLibInstance, NULL, "Please Swipe or Insert card", GL_ICON_INFORMATION, GL_BUTTON_ALL, 2*1000);
@@ -184,17 +188,15 @@ void cardOps(char *cardData){
 		swipeStatus = Telium_Ttestall( CAM0 | SWIPE31 | SWIPE2 | SWIPE3 | KEYBOARD, 0);
 
 		if(swipeStatus & CAM0){
-			Telium_EMV_power_on(portCam, &histData);
-			memcpy (cmdSqn,
-					    "\x00\xA4\x04\x00\x0E"
-						"1PAY.SYS.DDF01",
-						apduCmd.length);
-			apduCmd.data = cmdSqn;
-			apduRpns.data = rspnSqn;
-			statusIso = Telium_EMV_apdu(portCam, &apduCmd, &apduRpns);
-			for ( i = 0; i<apduCmd.length; i++)
-					Telium_Sprintf(&cardData[3*i], "%02X ", rspnSqn[i]);
-			statusIso = 0;
+			statusIso = Telium_EMV_power_on(portCam, &histData);
+			if (statusIso == ISO_OK) {
+				apduCmd.data = cmdSqn;
+				apduRpns.data = rspnSqn;
+				Telium_EMV_apdu(portCam, &apduCmd, &apduRpns);
+				for ( i = 0; i<apduCmd.length; i++){
+						Telium_Sprintf(&cardData[3*i], "%02X ", rspnSqn[i]);
+				}
+			}
 		}
 
 //		if (portCam != NULL) {
