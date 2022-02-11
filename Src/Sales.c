@@ -165,7 +165,8 @@ void cardOps(char *cardData){
 	memset(trackNo, 0, sizeof trackNo);
 	memset(cmdSqn,0 ,sizeof cmdSqn);
 	memset(rspnSqn, 0, sizeof rspnSqn);
-	memcpy (cmdSqn,"80C002A108", 20);// Read Data from chip
+	memcpy (cmdSqn,"\x00\xA4\x04\x00\x0E"
+			"1PAY.SYS.DDF01", 20);// Read Data from chip
 	apduCmd.length = 20;
 
 	while(!magCardPresent){

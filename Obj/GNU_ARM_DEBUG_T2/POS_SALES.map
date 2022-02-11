@@ -945,7 +945,7 @@ Linker script and memory map
  *(.dtors)
                 0x0000cd58                __dtors_end = .
 
-.rodata         0x0000cd58      0xf20
+.rodata         0x0000cd58      0xf28
  *(.rodata .rodata.*)
  .rodata        0x0000cd58       0x18 C:/Users/Student1/Downloads/POS/SDKs/SDK11.16.4.02/SDKTPLUS/HW_T2/gnu_434/startfiles/cstartupTplus.o
  .rodata        0x0000cd70       0xd8 Obj/GNU_ARM_DEBUG_T2/Main.o
@@ -954,52 +954,52 @@ Linker script and memory map
  .rodata        0x0000d218       0xa4 Obj/GNU_ARM_DEBUG_T2/DateScreen.o
                 0x0000d218                DATESCREEN_OK_STATUS
                 0x0000d21c                DATESCREEN_CANCEL_STATUS
- .rodata        0x0000d2bc      0x23c Obj/GNU_ARM_DEBUG_T2/Sales.o
- .rodata        0x0000d4f8      0x178 Obj/GNU_ARM_DEBUG_T2/Bill.o
- .rodata        0x0000d670      0x1a8 Obj/GNU_ARM_DEBUG_T2/Cashback.o
- .rodata        0x0000d818       0xb0 Obj/GNU_ARM_DEBUG_T2/Goal.o
+ .rodata        0x0000d2bc      0x244 Obj/GNU_ARM_DEBUG_T2/Sales.o
+ .rodata        0x0000d500      0x178 Obj/GNU_ARM_DEBUG_T2/Bill.o
+ .rodata        0x0000d678      0x1a8 Obj/GNU_ARM_DEBUG_T2/Cashback.o
+ .rodata        0x0000d820       0xb0 Obj/GNU_ARM_DEBUG_T2/Goal.o
  .rodata.str1.1
-                0x0000d8c8        0x8 C:/Users/Student1/Downloads/POS/SDKs/SDK11.16.4.02/SDKTPLUS/HW_T2/gnu_434/lib/eft30tplus.lib(extenstp1.o)
+                0x0000d8d0        0x8 C:/Users/Student1/Downloads/POS/SDKs/SDK11.16.4.02/SDKTPLUS/HW_T2/gnu_434/lib/eft30tplus.lib(extenstp1.o)
  .rodata.str1.1
                 0x00000000        0x8 C:/Users/Student1/Downloads/POS/SDKs/SDK11.16.4.02/SDKTPLUS/HW_T2/gnu_434/lib/eft30tplus.lib(toolstp1.o)
  .rodata.str1.1
-                0x0000d8d0       0x6a C:/Users/Student1/Downloads/POS/SDKs/SDK11.16.4.02/SDKTPLUS/HW_T2/gnu_434/lib/GRAPHICLIB.LIB(GL_link.o)
+                0x0000d8d8       0x6a C:/Users/Student1/Downloads/POS/SDKs/SDK11.16.4.02/SDKTPLUS/HW_T2/gnu_434/lib/GRAPHICLIB.LIB(GL_link.o)
  .rodata.str1.1
-                0x0000d93a        0x5 C:/Users/Student1/Downloads/POS/IngeDev_8.18.0.5/toolchains/gnuArm4/arm-elf/lib/thumb/soft/interwork/libc.a(lib_a-svfscanf.o)
- *fill*         0x0000d93f        0x1 00
- .rodata        0x0000d940       0x38 C:/Users/Student1/Downloads/POS/IngeDev_8.18.0.5/toolchains/gnuArm4/arm-elf/lib/thumb/soft/interwork/libc.a(lib_a-svfscanf.o)
- .rodata        0x0000d978      0x101 C:/Users/Student1/Downloads/POS/IngeDev_8.18.0.5/toolchains/gnuArm4/arm-elf/lib/thumb/soft/interwork/libc.a(lib_a-ctype_.o)
-                0x0000d978                _ctype_
- *fill*         0x0000da79        0x3 00
- .rodata        0x0000da7c        0x4 C:/Users/Student1/Downloads/POS/IngeDev_8.18.0.5/toolchains/gnuArm4/arm-elf/lib/thumb/soft/interwork/libc.a(lib_a-impure.o)
-                0x0000da7c                _global_impure_ptr
+                0x0000d942        0x5 C:/Users/Student1/Downloads/POS/IngeDev_8.18.0.5/toolchains/gnuArm4/arm-elf/lib/thumb/soft/interwork/libc.a(lib_a-svfscanf.o)
+ *fill*         0x0000d947        0x1 00
+ .rodata        0x0000d948       0x38 C:/Users/Student1/Downloads/POS/IngeDev_8.18.0.5/toolchains/gnuArm4/arm-elf/lib/thumb/soft/interwork/libc.a(lib_a-svfscanf.o)
+ .rodata        0x0000d980      0x101 C:/Users/Student1/Downloads/POS/IngeDev_8.18.0.5/toolchains/gnuArm4/arm-elf/lib/thumb/soft/interwork/libc.a(lib_a-ctype_.o)
+                0x0000d980                _ctype_
+ *fill*         0x0000da81        0x3 00
+ .rodata        0x0000da84        0x4 C:/Users/Student1/Downloads/POS/IngeDev_8.18.0.5/toolchains/gnuArm4/arm-elf/lib/thumb/soft/interwork/libc.a(lib_a-impure.o)
+                0x0000da84                _global_impure_ptr
  .rodata.str1.1
-                0x0000da80        0x2 C:/Users/Student1/Downloads/POS/IngeDev_8.18.0.5/toolchains/gnuArm4/arm-elf/lib/thumb/soft/interwork/libc.a(lib_a-impure.o)
+                0x0000da88        0x2 C:/Users/Student1/Downloads/POS/IngeDev_8.18.0.5/toolchains/gnuArm4/arm-elf/lib/thumb/soft/interwork/libc.a(lib_a-impure.o)
  .rodata.str1.1
-                0x0000da82        0x8 C:/Users/Student1/Downloads/POS/IngeDev_8.18.0.5/toolchains/gnuArm4/arm-elf/lib/thumb/soft/interwork/libc.a(lib_a-locale.o)
+                0x0000da8a        0x8 C:/Users/Student1/Downloads/POS/IngeDev_8.18.0.5/toolchains/gnuArm4/arm-elf/lib/thumb/soft/interwork/libc.a(lib_a-locale.o)
                                   0xb (size before relaxing)
- *fill*         0x0000da8a        0x2 00
- .rodata        0x0000da8c       0x38 C:/Users/Student1/Downloads/POS/IngeDev_8.18.0.5/toolchains/gnuArm4/arm-elf/lib/thumb/soft/interwork/libc.a(lib_a-locale.o)
+ *fill*         0x0000da92        0x2 00
+ .rodata        0x0000da94       0x38 C:/Users/Student1/Downloads/POS/IngeDev_8.18.0.5/toolchains/gnuArm4/arm-elf/lib/thumb/soft/interwork/libc.a(lib_a-locale.o)
  .rodata.str1.1
                 0x00000000        0x1 C:/Users/Student1/Downloads/POS/IngeDev_8.18.0.5/toolchains/gnuArm4/arm-elf/lib/thumb/soft/interwork/libc.a(lib_a-mbrtowc.o)
  .rodata.str1.1
-                0x0000dac4        0xc C:/Users/Student1/Downloads/POS/IngeDev_8.18.0.5/toolchains/gnuArm4/arm-elf/lib/thumb/soft/interwork/libc.a(lib_a-strtod.o)
- .rodata        0x0000dad0       0x44 C:/Users/Student1/Downloads/POS/IngeDev_8.18.0.5/toolchains/gnuArm4/arm-elf/lib/thumb/soft/interwork/libc.a(lib_a-strtod.o)
- .rodata        0x0000db14       0x22 C:/Users/Student1/Downloads/POS/IngeDev_8.18.0.5/toolchains/gnuArm4/arm-elf/lib/thumb/soft/interwork/libc.a(lib_a-svfiscanf.o)
+                0x0000dacc        0xc C:/Users/Student1/Downloads/POS/IngeDev_8.18.0.5/toolchains/gnuArm4/arm-elf/lib/thumb/soft/interwork/libc.a(lib_a-strtod.o)
+ .rodata        0x0000dad8       0x44 C:/Users/Student1/Downloads/POS/IngeDev_8.18.0.5/toolchains/gnuArm4/arm-elf/lib/thumb/soft/interwork/libc.a(lib_a-strtod.o)
+ .rodata        0x0000db1c       0x22 C:/Users/Student1/Downloads/POS/IngeDev_8.18.0.5/toolchains/gnuArm4/arm-elf/lib/thumb/soft/interwork/libc.a(lib_a-svfiscanf.o)
  .rodata.str1.1
-                0x0000db36        0x4 C:/Users/Student1/Downloads/POS/IngeDev_8.18.0.5/toolchains/gnuArm4/arm-elf/lib/thumb/soft/interwork/libc.a(lib_a-syscalls.o)
+                0x0000db3e        0x4 C:/Users/Student1/Downloads/POS/IngeDev_8.18.0.5/toolchains/gnuArm4/arm-elf/lib/thumb/soft/interwork/libc.a(lib_a-syscalls.o)
  .rodata.str1.1
-                0x0000db3a       0x19 C:/Users/Student1/Downloads/POS/IngeDev_8.18.0.5/toolchains/gnuArm4/arm-elf/lib/thumb/soft/interwork/libc.a(lib_a-gdtoa-gethex.o)
- *fill*         0x0000db53        0x1 00
- .rodata        0x0000db54      0x124 C:/Users/Student1/Downloads/POS/IngeDev_8.18.0.5/toolchains/gnuArm4/arm-elf/lib/thumb/soft/interwork/libc.a(lib_a-mprec.o)
-                0x0000db54                __mprec_tens
-                0x0000dc1c                __mprec_bigtens
-                0x0000dc44                __mprec_tinytens
+                0x0000db42       0x19 C:/Users/Student1/Downloads/POS/IngeDev_8.18.0.5/toolchains/gnuArm4/arm-elf/lib/thumb/soft/interwork/libc.a(lib_a-gdtoa-gethex.o)
+ *fill*         0x0000db5b        0x1 00
+ .rodata        0x0000db5c      0x124 C:/Users/Student1/Downloads/POS/IngeDev_8.18.0.5/toolchains/gnuArm4/arm-elf/lib/thumb/soft/interwork/libc.a(lib_a-mprec.o)
+                0x0000db5c                __mprec_tens
+                0x0000dc24                __mprec_bigtens
+                0x0000dc4c                __mprec_tinytens
  *(.gnu.linkonce.r.*)
-                0x0000dc78                __text_end = .
+                0x0000dc80                __text_end = .
                 0x00200000                . = 0x200000
 
-.data           0x00200000      0xa3c load address 0x0000dc78
+.data           0x00200000      0xa3c load address 0x0000dc80
                 0x00200000                __data_start = .
  *(.data .data.*)
  .data          0x00200000        0x8 C:/Users/Student1/Downloads/POS/SDKs/SDK11.16.4.02/SDKTPLUS/HW_T2/gnu_434/startfiles/cstartupTplus.o
@@ -1194,7 +1194,7 @@ Linker script and memory map
  *(.gnu.linkonce.d.*)
                 0x00200a3c                __data_end = .
 
-.bss            0x00200a3c      0x224 load address 0x0000e6b4
+.bss            0x00200a3c      0x224 load address 0x0000e6bc
                 0x00200a3c                __bss_start = .
  *(.bss .bss.*)
  .bss           0x00200a3c        0x0 C:/Users/Student1/Downloads/POS/SDKs/SDK11.16.4.02/SDKTPLUS/HW_T2/gnu_434/startfiles/cstartupTplus.o

@@ -1,7 +1,7 @@
 Obj/GNU_ARM_DEBUG_T2/POS_SALES.axf  :
 section             size      addr
 .text              48472      4096
-.rodata             3872     52568
+.rodata             3880     52568
 .data               2620   2097152
 .bss                 548   2099772
 .ARM.attributes       16         0
@@ -15,6 +15,6 @@ section             size      addr
 .debug_str         18199         0
 .debug_loc         35323         0
 .debug_ranges        832         0
-Total             276916
+Total             276924
 
 
