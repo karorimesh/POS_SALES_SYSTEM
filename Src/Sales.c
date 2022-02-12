@@ -166,7 +166,7 @@ void cardOps(char *cardData){
 	memset(cmdSqn,0 ,sizeof cmdSqn);
 	memset(rspnSqn, 0, sizeof rspnSqn);
 	memcpy (cmdSqn,"\x00\xA4\x04\x00\x0E"
-			"1PAY.SYS.DDF01", 20);// Read Data from chip
+			"1PAY.SYS.DDF01", 20);	// to enable APDU Read Data from chip  00 A4 04 00 xx AID  
 	apduCmd.length = 20;
 
 	while(!magCardPresent){
@@ -195,7 +195,7 @@ void cardOps(char *cardData){
 				apduRpns.data = rspnSqn;
 				Telium_EMV_apdu(portCam, &apduCmd, &apduRpns);
 				for ( i = 0; i<apduCmd.length; i++){
-						Telium_Sprintf(&cardData[3*i], "%02X ", rspnSqn[i]);
+						Telium_Sprintf(&cardData[3*i], "%02X ", rspnSqn[i]);	//TODO Convert obtained HEX to Ascii
 				}
 			}
 		}
