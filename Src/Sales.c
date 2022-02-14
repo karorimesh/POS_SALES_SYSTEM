@@ -158,6 +158,7 @@ void cardOps(char *cardData){
 	HISTORIC histData;
 	byte cmdSqn[256];
 	byte rspnSqn[256];
+	char tempHex[3];
 
 	//Prompt for Card insert or swipe
 
@@ -195,7 +196,10 @@ void cardOps(char *cardData){
 				apduRpns.data = rspnSqn;
 				Telium_EMV_apdu(portCam, &apduCmd, &apduRpns);
 				for ( i = 0; i<apduCmd.length; i++){
-						Telium_Sprintf(&cardData[3*i], "%02X ", rspnSqn[i]);	//TODO Convert obtained HEX to Ascii
+						memset(tempHex, 0, sizeof tempHex);
+//						Telium_Sprintf(&cardData[3*i], "%02X ", rspnSqn[i] );
+						Telium_Sprintf(&tempHex[0], "%02X", rspnSqn[i]);
+						Telium_Sprintf(&cardData[i], "%c ", charToHex(tempHex));	//TODO Convert obtained HEX to Ascii
 				}
 			}
 		}

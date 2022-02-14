@@ -234,6 +234,7 @@ $(OBJ_PATH)/Sales.o \
 $(OBJ_PATH)/Bill.o \
 $(OBJ_PATH)/Cashback.o \
 $(OBJ_PATH)/Goal.o \
+$(OBJ_PATH)/SystemUtils.o \
 
 #-------------------------------------------------------------------------------
 # Dependencies
@@ -381,6 +382,16 @@ $(OBJ_PATH)/Goal.o: Src/Goal.c $(DEPENDENCIES) $(EXTRA_DEPENDENCIES)
 	@echo "'Src/Goal.c' compilation in progress..."
 	$(CC) $(CC_OPTS) -MMD -MP -o "$@" "$<"
 ifeq ($(MAKECMDGOALS), $(OBJ_PATH)/Goal.o)
+	@echo "done!"
+endif
+
+ifneq ($(MAKECMDGOALS), clean)
+-include $(OBJ_PATH)/SystemUtils.d
+endif
+$(OBJ_PATH)/SystemUtils.o: Src/SystemUtils.c $(DEPENDENCIES) $(EXTRA_DEPENDENCIES)
+	@echo "'Src/SystemUtils.c' compilation in progress..."
+	$(CC) $(CC_OPTS) -MMD -MP -o "$@" "$<"
+ifeq ($(MAKECMDGOALS), $(OBJ_PATH)/SystemUtils.o)
 	@echo "done!"
 endif
 
